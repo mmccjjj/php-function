@@ -11,8 +11,24 @@
 <body>
 
   <?php
-
  /*  phpinfo(); */
+
+ include('functions.php');
+
+ begruessen();
+ echo '<br>';
+ addieren(10, 10);
+ echo '<br>';
+ addieren(5, 7);
+ echo '<br>';
+ begruessenPers();
+ echo '<br>';
+ echo $resultat;
+ echo '<br>';
+ erstelleListevonArray($opportunity);
+ echo '<br>';
+ arrayInCamel($opportunity);
+ 
 
   ?>
 
