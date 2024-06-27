@@ -65,22 +65,109 @@
 
 
     //chatgpt "einfachere Methode"
+    // Auch lösung in Aufgabe berücksichtigen!
 
-   /*  function arrayInCamel($array){ */
-        foreach ($array as &$item) {
-            $item = strtolower($item); // Alle Einträge in Kleinbuchstaben umwandeln
+   
+/*         foreach ($array as &$item) {
+            $item = strtolower($item); 
             
             if (strpos($item, ' ') !== false) {
-                // Falls ein Leerzeichen gefunden wird, Wörter in CamelCase umwandeln
+               
                 $words = explode(' ', $item);
                 $item = $words[0] . implode('', array_map('ucfirst', array_slice($words, 1)));
             }
             
-            $item = '#' . $item; // Jeden Eintrag mit '#' voranstellen
+            $item = '#' . $item; 
         }
     
-        $result = implode(', ', $array); // Array in eine kommagetrennte Zeichenfolge umwandeln
+        $result = implode(', ', $array); 
     
-        echo $result; // Ausgabe der Zeichenfolge
+        echo $result; 
+     */
+
+     function add($a, $b){
+        /* echo $a+$b; */
+        return $a+$b;
+
+     }
+     function subtract($a, $b){
+        /* echo $a-$b; */
+        return $a- $b;
+     }
+     function multiply($a, $b){
+        /* echo $a*$b; */
+        return $a* $b;
+     }
+     function divide($a, $b){
+        if ($b== 0){
+            return 'durch null ist nicht teilbar';
+        }else{
+
+        /* echo $a/$b; */
+        return $a/ $b;
+        }
+     }
+
+     function performCalculation($zahl1, $zahl2, $cal){
+        if(is_callable($cal)){
+            return $cal($zahl1,$zahl2);
+        }else{
+            return 'Ungültige Eingabe';
+        }
+     }
+
+     $mathAr= array('add', 'subtract', 'multiply', 'divide');
+     $a1= 30;
+     $a2= 10;
+
+     function mathArray($a,$b, $array){
+        foreach($array as $array1){
+            if (is_callable($array1)){
+                $result= $array1($a, $b);
+                echo "Ergebnis von $array1($a, $b): $result";
+                echo "<br>";
+            }else{
+                echo "$array1 ist keine gültige Funktion";
+            }
+        }
+     };
+
+
+    function multipliziere(...$zahlen){
+        $ergebis= 1;
+        foreach($zahlen as $zahl){
+            $ergebis*= $zahl;
+        };
+        echo $ergebis;
+        echo '<br>';
+    };
+
+    $multiply= function($zahl){
+        $faktor= 2;
+        echo $zahl* $faktor;
+        echo '<br>';
+        return $zahl* $faktor;
+    };
+    
+/*     function multiplier($faktor){
+        return function($zahl) use($faktor){
+            return $faktor* $zahl;
+        };
+    }; */
+
+    $multiplier2= fn($zahl)=> $zahl* 2;
+
+    $multiplier3= fn($zahl)=> $zahl* 3;
+
+
+    function rekursiv($x) {
+        if ($x >= 7 && $x <= 10) {
+            echo $x . " ";
+        } 
+        if ($x < 10) {
+            rekursiv($x + 1);
+        }
     }
+
+
 ?>
